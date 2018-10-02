@@ -115,7 +115,7 @@ var app = {
  // function(){ bluetoothSerial.disconnect() },
  // 5000
 //);
-	    bluetoothSerial.disconnect();
+	    //bluetoothSerial.disconnect();
     },
     disconnect: function(event) {
         bluetoothSerial.disconnect(app.showMainPage, app.onError);
