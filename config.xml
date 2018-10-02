@@ -1,0 +1,145 @@
+<widget xmlns = "http://www.w3.org/ns/widgets"
+	xmlns:gap = "http://phonegap.com/ns/1.0"
+	id        = "com.payall.agent.ng"
+	versionCode="1"
+	version   = "1.0.0">
+	<preference name="phonegap-version" value="cli-6.5.0"/>
+
+    <plugin name="cordova-plugin-whitelist" source="npm" />
+    <access origin="*" />
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+	
+	
+	
+	
+    <platform name="ios" />
+    <platform name="android" />
+    <platform name="winphone" />
+	
+    <name>::PayAll Agent App::</name>
+    <description>Giving you more for less...</description>
+    <author href="http://www.payall.ng" email="info@payall.ng">Tinuten Nigeria</author>
+    <content src="index.html" />
+    <preference name="permissions" value="none" />
+	<preference name="android-build-tool" value="gradle" />
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="disallowOverscroll" value="true" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+	<preference name="ErrorUrl" value="index.html" />
+<preference name="KeepRunning" value="false"/>.
+	<preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="10" />
+    <preference name="android-targetSdkVersion" value="23" />
+    <preference name="android-installLocation" value="auto" />
+ 
+	 
+	<preference name="target-device" value="universal" />
+	<preference name="deployment-target" value="8.0" />
+  <plugin name="cordova-plugin-geolocation" source="npm"/>
+	 
+		<gap:plugin name="cordova-plugin-vibration" source="npm" version="2.1.1" />
+
+   <plugin name="cordova-plugin-geolocation"  spec="0.3.12" source="npm"/>
+<plugin name="cordova-plugin-network-information"  spec="0.2.15" source="npm" />
+ 
+	
+ 
+  
+
+ 	  <plugin name="cordova-plugin-device" value="org.apache.cordova.device"/>
+	<feature name="Notification">
+    <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+</feature>
+
+    <plugin name="cordova-plugin-device-motion" source="npm"/>
+    <plugin name="cordova-plugin-device-orientation" source="npm"/>
+    <plugin name="cordova-plugin-dialogs" source="npm"/>
+<plugin name="cordova-plugin-file" spec="~6.0.0" />    
+ <plugin name="cordova-plugin-globalization" source="npm"/>
+    <plugin name="cordova-plugin-inappbrowser" source="npm"/>
+    <plugin name="cordova-plugin-media" source="npm"/>
+    <plugin name="cordova-plugin-network-information" source="npm"/>
+	
+<plugin name="cordova-plugin-bluetooth-serial" source="npm" />
+	
+
+	
+<plugin spec="https://github.com/tanelih/phonegap-bluetooth-plugin.git" source="git" />
+ 
+	
+	
+	
+	
+
+ 
+	 
+    <access origin="*" />
+ 
+
+
+   <icon src="icon.png" />
+
+<icon platform="ios" height="60" width="60" src="res/icons/ios/icon-60.png" />
+<icon platform="ios" height="120" width="120" src="res/icons/ios/icon-60-2x.png" />
+<icon platform="ios" height="180" width="180" src="res/icons/ios/icon-60-3x.png" />
+<icon platform="ios" height="76" width="76" src="res/icons/ios/icon-76.png" />
+<icon platform="ios" height="152" width="152" src="res/icons/ios/icon-76-2x.png" />
+<icon platform="ios" height="40" width="40" src="res/icons/ios/icon-40.png" />
+<icon platform="ios" height="80" width="80" src="res/icons/ios/icon-40-2x.png" />
+<icon platform="ios" height="57" width="57" src="res/icons/ios/icon-57.png" />
+<icon platform="ios" height="114" width="114" src="res/icons/ios/icon-57-2x.png" />
+<icon platform="ios" height="72" width="72" src="res/icons/ios/icon-72.png" />
+<icon platform="ios" height="144" width="144" src="res/icons/ios/icon-72-2x.png" />
+<icon platform="ios" height="29" width="29" src="res/icons/ios/icon-small.png" />
+<icon platform="ios" height="58" width="58" src="res/icons/ios/icon-small-2x.png" />
+<icon platform="ios" height="50" width="50" src="res/icons/ios/icon-50.png" />
+<icon platform="ios" height="100" width="100" src="res/icons/ios/icon-50-2x.png" />
+
+<icon platform="android" qualifier="ldpi" src="res/icons/android/icon-36-ldpi.png" />
+<icon platform="android" qualifier="mdpi" src="res/icons/android/icon-48-mdpi.png" />
+<icon platform="android" qualifier="hdpi" src="res/icons/android/icon-72-hdpi.png" />
+<icon platform="android" qualifier="xhdpi" src="res/icons/android/icon-96-xhdpi.png" />
+<icon platform="android" qualifier="xxhdpi" src="res/icons/android/icon-144-xxhdpi.png" />
+<icon platform="android" qualifier="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
+
+
+ 
+	
+	
+ 
+  <splash src="splash.png" />
+
+
+
+   <!-- <plugin name="org.apache.cordova.device" version="0.2.3" source="npm"/> -->
+    
+ 
+		
+				<feature name="http://tizen.org/api/systeminfo" required="true"/>
+ 
+		 
+		<feature name="http://api.phonegap.com/1.0/media" />
+		<feature name="http://api.phonegap.com/1.0/network" />
+		<feature name="http://api.phonegap.com/1.0/notification" />
+
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>

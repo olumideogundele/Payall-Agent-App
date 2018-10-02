@@ -1,0 +1,333 @@
+ 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      
+        <meta name="format-detection" content="telephone=no" />
+		  <link rel="stylesheet" type="text/css" href="css/style.css">
+         <script src="offline.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+ <link rel="stylesheet" href="offline-theme-hubspot.css" />
+<!--<link rel="stylesheet" href="../themes/offline-theme-chrome.css" />-->
+<link rel="stylesheet" href="offline-language-english.css" />
+<script type="text/javascript" charset="utf-8">
+
+	
+	
+    // Wait for device API libraries to load
+    //
+	
+	 
+	
+ 
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+     
+ 
+       var networkState = checkConnection();
+   /* load local files if there is not network connection */
+                  if (networkState == Connection.NONE) {
+                      window.location="error.html";
+                  } else {
+             var run = function(){
+  var req = new XMLHttpRequest();
+  req.timeout = 500;
+  req.open('GET', 'index.html', true);
+  req.send();
+}
+
+setInterval(run, 3000);
+                  }
+    }
+
+        function checkConnection() {
+            var networkState = navigator.connection.type;
+
+            var states = {};
+            states[Connection.UNKNOWN]  = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI]     = 'WiFi connection';
+            states[Connection.CELL_2G]  = 'Cell 2G connection';
+            states[Connection.CELL_3G]  = 'Cell 3G connection';
+            states[Connection.CELL_4G]  = 'Cell 4G connection';
+            states[Connection.CELL]     = 'Cell generic connection';
+            states[Connection.NONE]     = 'No network connection';
+  return networkState;
+            //alert('Connection type: ' + states[networkState]);
+        }
+
+    </script>
+        <script
+      src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  </head>
+   <script type="text/javascript"> 
+
+ var name=localStorage.getItem("fullname");
+ 
+ if(name == "null")
+ {
+	 	window.location.replace("index.html");
+ }
+</script>
+
+		 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+ 
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 12px;
+  padding: 5px 10px 5px 30px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 90%;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 5px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>		 
+	 
+		 <style>
+    .page-navigation a {
+      margin: 0 2px;
+      display: inline-block;
+      padding: 3px 5px;
+      color: #ffffff;
+      background-color: #70b7ec;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .page-navigation a[data-selected] {
+      background-color: #3d9be0;
+    }
+  </style>
+	  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+  <script src="jquery-paginate.js"></script>	 
+		 
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,  target-densitydpi=device-dpi" />
+    <title>Pay IBEDC Bill</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  </head>
+   
+  <body onLoad="retrieve()">
+   
+
+
+    <div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+             <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times; </a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="home.html">IBEDC</a>
+   <a href="history.html">History</a>
+  <a href="#">Reprint</a>
+     <a href="singout.html">Sign Out</a>
+</div>
+
+<span style="font-size:25px;cursor:pointer" onclick="openNav()"><img src="menu.fw.png" width="37" height="34" alt="Menu">
+
+<span style="font-size:15px;">
+ <script type="text/javascript"> 
+
+ var name=localStorage.getItem("fullname");
+ 
+  document.write("Welcome: "+name);
+</script>
+</span>
+
+ </span>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+                <h4 class="modal-title" id="myModalLabel" style="text-align:center;">
+                <a href="dashboard.html"> <img src="Payall Web-02.png" widtd="102" height="53" alt="PayAllNG" longdesc="http://payall.ng/base" /></a><br>
+TRANSACTION HISTORY PAGE</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="well">
+                          <form id="loginForm" metdod="" action="" novalidate>
+                                 <p id="message"></p>
+                                 
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<div style="height:250px; position:relative; width:auto; overflow-x:scroll ; overflow-y: scroll; padding-bottom:10px;">     
+							  <div id= "mainDiv">
+							 
+							  
+							 
+							   
+							  </div> </div>
+                          </form>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+  function retrieve() {
+   
+ //var merchantcode=localStorage.getItem("merchantcode");
+	  var walletno=localStorage.getItem("wallet_number");
+	  var merchantcode=localStorage.getItem("merchantcode"); 
+  
+if(walletno == null || walletno == "") 
+ {
+ 
+$("#message").html("<strong>Information </strong>  cannot be left empty. ");
+$("p").addClass("alert alert-warning");
+ 
+ }
+ else{
+
+        $.ajax({
+            type: "POST",
+            url: "https://payall.ng/retrieve.php",
+            data: {walletno:walletno,merchantcode:merchantcode},
+			async: false,
+            dataType: "JSON",
+	beforeSend: function() {
+                    ////    $("#insert").val('Connecting..+');
+						 // $("#message").html('Connecting... Please wait...');
+		// $("p").addClass("alert alert-warning");
+		 $("#mainDiv").html('<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">');
+					
+					 //d.innerHTML = '<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">';
+                    },
+					/*array("service_name" => $service_name, "amount" => $newamount, "statusCSS" => $statusCSS, "statusParam" => $statusParam , "transaction_code" => $transaction_log, "date" => $created_date  );*/
+					
+            success: function(results) {
+              
+			  
+			//   $("#message").html('');
+		// $("p").addClass("alert alert-warning");
+			  
+			   html = "<table id='myTable' class='table table-hover display  pb-30'  width = '100%'>";
+			   
+			   html += '<tr  class="header"><th>Service Name</th><th>Amount</th><th> Status</th><th> Trans Code</th><th>Date Time</th><th> More</th></tr>';
+			  var html, comment;
+            for(var i = 0; i < results.length; i++) {
+                comment = results[i];
+				
+				var servicename = comment.service_name;
+				var amount = comment.amount;
+				var statusCSS = comment.statusCSS;
+				
+					var statusParam = comment.statusParam;
+						var transaction_code = comment.transaction_code;
+							var created_date = comment.date;
+				
+				
+				
+html += '<tr><td>'+ servicename + '</td><td>' + amount + '</td><td class = "statusCSS">' + statusParam + '</td><td>' + transaction_code + '</td><td>' + created_date + '</td><td> details</td></tr>';
+            }
+			
+			
+			html += "</table>";
+            $('#mainDiv').html(html);
+		
+			
+			  
+			
+            },
+            error: function(err) {
+          
+			$("#message").html("<strong>Error Occured: </strong> "+err +".. Please try again later");
+$("p").addClass("alert alert-danger");
+            }
+        });
+}
+ 
+
+
+
+  
+}
+
+
+
+
+
+
+
+ 
+			 
+         
+
+  </script>
+  
+  <script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+      
+    <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+  
+</html>

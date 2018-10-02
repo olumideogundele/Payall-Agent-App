@@ -1,0 +1,371 @@
+ 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      
+        <meta name="format-detection" content="telephone=no" />
+		 
+		 
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,  target-densitydpi=device-dpi" />
+    <title>Pay IBEDC Bill</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  </head>
+  <script>
+  function call()
+  {
+$("#myDiv").hide();
+$("#printer").hide();
+
+}
+</script>
+  <body onload="call()">
+
+
+    <div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">PAYALL IBEDC BILL PAYMENT</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="well">
+                          <form id="loginForm" metdod="" action="" novalidate>
+                                 <p id="message"></p>
+							  <div id= "mainDiv">
+							  <div class="form-group" >
+                                  <label for="meter" class="control-label">Enter Meter/Account Number</label>
+                                  <input type="text" class="form-control numbersOnly" id="meter" name="meter" value="" required title="Please enter you Name" placeholder="">
+                                  <span class="help-block"></span>
+                              </div> 
+							  <button type="button" class="btn btn-success btn-block" name="insert-data" id="insert-data" onclick="insertData()">Verify Customer</button>
+							  </div>
+                               
+
+							   <div id= "myDiv">
+							 <div class="form-group">
+                                  <label for="meter" class="control-label">Amount</label>
+                                  <input type="text" class="form-control numbersOnly" id="amount" name="amount" value="" required title="Please enter you Name" placeholder="">
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							 
+									
+							   <div class="form-group">
+                                  <label for="meter" class="control-label">Reciever Phone Number</label>
+                                 <input type="text" class="form-control" id="phone" name="phone"  value= "" required>
+                                  <span class="help-block"></span>
+                              </div>
+							  <button type="button" class="btn btn-success btn-block" name="insert-pay" id="insert-pay" onclick=" pay()">Pay Now</button>
+							 
+							 <div class="btn btn-info btn-block" name="insert-pay">Please confirm Informtion Below:</div>
+									<span class="help-block"></span><br>
+							  							 <div class="form-group">
+                                  <label for="meter" class="control-label">Customer Name</label>
+                                  <input type="text" class="form-control" id="customername" name="customername" value="" readonly>
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							    <div class="form-group">
+                                  <label for="meter" class="control-label">Meter Number Type</label>
+                             <input type="text" class="form-control" id="metering" name="metering"  value="" required readonly>	
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							  
+							  							 <div class="form-group">
+                                  <label for="meter" class="control-label">Account Type</label>
+                                 <input type="text" class="form-control" id="accounttype" name="accounttype" value= "" readonly>
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							  
+							  							 <div class="form-group">
+                                  <label for="meter" class="control-label">Bussiness Hub</label>
+                                <input type="text" class="form-control" id="thirdparty" name="thirdparty"  value="" required readonly>	
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							  
+							   <div class="form-group">
+                                  <label for="meter" class="control-label">Payment Type</label>
+                                <input type="text" class="form-control" id="Payment_type2" name="Payment_type2"  value="Electricity bills" required readonly>	
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							  
+							   <div class="form-group">
+							   
+							   
+							   
+                              
+							 
+						 	
+						 																
+			
+                               
+								
+ 	<input type="hidden" class="form-control" id="company" name="company"  value="" required>
+																	  
+ <input type="hidden" class="form-control" id="payment_type" name="payment_type"  value="" required>				  
+								  
+ <input type="hidden" class="form-control" id="myaccounttype" name="myaccounttype"  value="" required>			  
+                              </div>
+							  
+							  
+							  
+							  
+							  
+							  </div>
+
+                             
+                              <br>
+                         
+							
+							
+							         
+                                 <div id="txtdint2"> </div>
+                                 
+                                 
+                                 <div id="printer">
+                                  <button type="button" class="btn btn-success btn-block" name="insert-data" id="insert-data" onclick="link()">Select a printer</button>
+                                 </div>
+							 
+							
+                          </form>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+function link ()
+{
+window.location.replace("index.html");	
+	
+}
+
+
+
+  function insertData() {
+    var meter=$("#meter").val();
+    
+   if(meter == null || meter == "" )
+ {
+ 
+					   $("#message").html("<strong>Meter Number</strong>  cannot be left empty. ");
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+ 
+ }
+ else{
+
+// AJAX code to send data to php file.
+        $.ajax({
+            type: "POST",
+            url: "https://payall.ng/insert-data2.php",
+            data: {meter:meter,meter2:meter},
+			async: false,
+            dataType: "JSON",
+	beforeSend: function() {
+                    //    $("#insert").val('Connecting..+');
+						  $("#message").html('Connecting... Please wait.');
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+			
+			// var d = document.getElementById('txtdint2');
+					  $("#txtdint2").html('<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">');
+					
+					 //d.innerHTML = '<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">';
+                    },
+            success: function(data) {
+             
+			  var returnValue = JSON.stringify(data);
+					 var obj = JSON.parse(data);
+					 
+					  var resp = obj.resp;   
+					 /* $data = '{"resp":"'+resp+'", "meter":"'+meterNumber+'", "company":"'+company+'", "payment_type":"'+payment_type+'", "customername":"'+fullname+'", "accounttype":"'+account_type+'", "amount":"'+amount+'", "phone":"'+phone+'", "thirdparty":"'+thirdpartyCode+'", "myaccounttype":"'+PaymentType+'"}';*/
+					  
+					  if(resp == "Success")
+					  {
+				  $("p").addClass("alert alert-success");	  
+					  $("#message").html(resp);
+			 
+			 
+			 
+          
+					  // alert(resp);
+					  $("#myDiv").show();
+					  $("#mainDiv").hide();
+					  $("#customername").val(obj.customername);  
+					   $("#accounttype").val(obj.accounttype); 
+						$("#thirdparty").val(obj.thirdparty); 
+						$("#company").val(obj.company);
+					$("#payment_type").val(obj.payment_type); 
+					$("#metering").val(obj.meter); 
+					$("#myaccounttype").val(obj.myaccounttype); 
+				 
+					   $("#txtdint2").html('');
+					  }
+					  else
+					  {
+					  var mess = obj.Message;
+					   $("#message").html(mess);
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+					  
+					  }
+					  
+			
+			
+			
+			
+            },
+            error: function(err) {
+            alert(err);
+            }
+        });
+}
+}
+
+
+
+
+  function pay() {
+    var phone = $("#phone").val();
+ var customername = $("#customername").val();
+ var accounttype = $("#accounttype").val();
+ var thirdparty = $("#thirdparty").val();
+// var Payment_type = $("#Payment_type").val();
+ var company = $("#company").val();
+ var payment_type = $("#payment_type").val();
+ var myaccounttype = $("#myaccounttype").val(); 
+ var metering = $("#metering").val(); 
+    var amount = $("#amount").val();
+ 
+
+ 
+ if(amount == null || amount == "" && phone == null || phone == "")
+ {
+ 
+					   $("#message").html("<strong>Amount</strong> and <strong>Phone Number</strong> cannot be left empty. ");
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+ 
+ }
+ else
+ {
+ 
+///   data: {amount:amount,meter:metering,customername:customername,accounttype:accounttype,thirdparty:thirdparty,company:company,payment_type:payment_type,myaccounttype:myaccounttype,phone:phone},
+        $.ajax({
+            type: "POST",
+            url: "https://payall.ng/test.php",
+           data: {amount:amount,meter:metering,customername:customername,accounttype:accounttype,thirdparty:thirdparty,company:company,payment_type:payment_type,myaccounttype:myaccounttype,phone:phone},
+			async: false,
+            dataType: "JSON",
+            success: function(data) {
+           //  $("#message").html(data);
+           // $("p").addClass("alert alert-success");
+			
+			   $("#myDiv").hide();
+					 $("#mainDiv").hide();
+					 
+					  
+					//  $("#message").html(resp);
+			 
+			  var returnValue = JSON.stringify(data);
+					 var obj = JSON.parse(data);
+					 
+					  var resp = obj.resp;   
+			 
+           // $("p").addClass("alert alert-success");
+					  alert(resp);
+					   $("#myDiv").hide();
+					 $("#mainDiv").hide();
+					   var res = obj.res;
+					  var meter = obj.meter;
+					    var phoning = obj.phone;
+						  var amount = obj.amount;
+						    var KWH = obj.KWH;
+							  var paymenttypename = obj.paymenttypename;
+							    var customername = obj.customername;
+								  var fetsreceipt = obj.fetsreceipt;
+								    var paymentlogid = obj.paymentlogid;
+									 var token = obj.token;
+									 var statusCSS = obj.statusCSS;
+									 var statusParam = obj.status;
+									 	 var datetime = obj.datetime;
+									 
+ var table = '<table class=""><tr>													  <td style="text-align: right; vertical-align: middle;"><img src="Payall Web-02.png" widtd="102" height="53" alt="PayAllNG" longdesc="http://payall.ng/base" /></td>													  <td style="text-align: left; vertical-align: middle;"><img src="ibedc.png" widtd="102" height="53" alt="IBEDC" longdesc="#" /></td>									  </tr><tr><td colspan="2" style="text-align: center; vertical-align: middle;">Thank You for choosing PayAll.<br />Below are the information of you transaction.</td> </tr> <tr>														<th style="text-align: right; vertical-align: middle;">Account Number:</th>														<th style="text-align: left; vertical-align: middle;">'+meter+' </th></tr><tr><th style="text-align: right; vertical-align: middle;">Phone Number:</th><th style="text-align: left; vertical-align: middle;">'+phone+' </th></tr> <tr><th style="text-align: right; vertical-align: middle;"><strong>Amount:</strong></th><th style="text-align: left; vertical-align: middle;"><strong>'+amount+'</strong></th> </tr>  <tr><th style="text-align: right; vertical-align: middle;"><strong>KWH:</strong></th><th style="text-align: left; vertical-align: middle;"><strong>'+KWH+'</strong></th> 	</tr>  <tr>	<th style="text-align: right; vertical-align: middle;">Payment Method:</th><th style="text-align: left; vertical-align: middle;" '+paymenttypename+' </th></tr> <tr><th style="text-align: right; vertical-align: middle;">Customer Name:</th><th style="text-align: left; vertical-align: middle;">'+customername+' </th></tr><tr>	<th style="text-align: right; vertical-align: middle;">Reciept Number:</th>	<th style="text-align: left; vertical-align: middle;"> '+fetsreceipt+'</th></tr><tr><th style="text-align: right; vertical-align: middle;">Payment ID:</th><th style="text-align: left; vertical-align: middle;">'+paymentlogid+'</th></tr><tr><th style="text-align: right; vertical-align: middle;">Status:</th><th style="text-align: left; vertical-align: middle;"><span class="'+statusCSS+'">'+resp+'</span></th></tr><tr><th style="text-align: right; vertical-align: middle;">Token:</th><th style="text-align: left; vertical-align: middle;">'+token+' </th></tr><tr><th style="text-align: right; vertical-align: middle;">Date:</th><th style="text-align: left; vertical-align: middle;">'+datetime+' </th></tr><tr><th colspan="2" style="text-align: center; vertical-align: middle;">THANK YOU FOR YOUR PATRONAGE.</th></tr></thead></table>';	 
+					
+				
+				  
+				  
+				  var printing = "27,97,1 Thank You for choosing PayAll.\n\n27,97,1Transaction information below\n\nPhone Number:"+phone+" \n";
+				  
+				     localStorage.setItem("firstname", printing);
+				  
+				 $("#messageInput").val(printing+"\n\n\n\n0"); 
+					   $("#txtdint2").html(table); 
+					   $("#printer").show();
+					 
+			 
+            },
+            error: function(err) {
+            alert(err);
+            }
+        });
+		
+		 }
+
+}
+
+
+
+
+
+
+
+ 
+				jQuery('.numbersOnly').keyup(function () { 
+    tdis.value = tdis.value.replace(/[^0-9\.]/g,'');
+});	
+		
+            var editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
+                lineNumbers: true,
+                matchBrackets: true,
+                mode: "application/x-httpd-php",
+                indentUnit: 4,
+                indentWitdTabs: true,
+                enterMode: "keep",
+                tabMode: "shift"                                                
+            });
+            editor.setSize('100%','420px');
+         
+
+  </script>
+  
+    <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+  
+</html>

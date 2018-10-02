@@ -1,0 +1,251 @@
+ 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      
+        <meta name="format-detection" content="telephone=no" />
+		 
+         <script src="offline.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+ <link rel="stylesheet" href="offline-theme-hubspot.css" />
+<!--<link rel="stylesheet" href="../themes/offline-theme-chrome.css" />-->
+<link rel="stylesheet" href="offline-language-english.css" />
+<script type="text/javascript" charset="utf-8">
+
+	
+	
+    // Wait for device API libraries to load
+    //
+	
+	 
+	
+ 
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+     
+ 
+       var networkState = checkConnection();
+   /* load local files if there is not network connection */
+                  if (networkState == Connection.NONE) {
+                      window.location="error.html";
+                  } else {
+             var run = function(){
+  var req = new XMLHttpRequest();
+  req.timeout = 500;
+  req.open('GET', 'index.html', true);
+  req.send();
+}
+
+setInterval(run, 3000);
+                  }
+    }
+
+        function checkConnection() {
+            var networkState = navigator.connection.type;
+
+            var states = {};
+            states[Connection.UNKNOWN]  = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI]     = 'WiFi connection';
+            states[Connection.CELL_2G]  = 'Cell 2G connection';
+            states[Connection.CELL_3G]  = 'Cell 3G connection';
+            states[Connection.CELL_4G]  = 'Cell 4G connection';
+            states[Connection.CELL]     = 'Cell generic connection';
+            states[Connection.NONE]     = 'No network connection';
+  return networkState;
+            //alert('Connection type: ' + states[networkState]);
+        }
+
+    </script>
+         <script>
+		 
+ var name=localStorage.getItem("fullname");
+ 
+ if(name != "null")
+ {
+	 	window.location.replace("dashboard.html");
+ }
+  
+</script>
+		 
+		 
+	 
+		 
+		 
+		 
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,  target-densitydpi=device-dpi" />
+    <title>Pay IBEDC Bill</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  </head>
+   
+  <body onLoad="reseting()">
+
+
+    <div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel" style="text-align:center;"> <img src="Payall Web-02.png" widtd="102" height="53" alt="PayAllNG" longdesc="http://payall.ng/base" /><br>
+WELCOME TO PAYALL | AGENTS PLATFORM</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="well">
+                          <form id="loginForm" metdod="" action="" novalidate>
+                                 <p id="message"></p>
+							  <div id= "mainDiv">
+							  <div class="form-group" >
+                                  <label for="username" class="control-label">Username</label>
+                                  <input type="text" class="form-control" id="username" name="username" value="" required title="Please enter you Name" placeholder="">
+                                  <span class="help-block"></span>
+                              </div> 
+							  
+							  <div class="form-group" >
+                                  <label for="username" class="control-label">Password</label>
+                                  <input type="password" class="form-control" id="password" name="password" value="" required title="Please enter you Name" placeholder="">
+                                  <span class="help-block"></span>
+                              </div> 
+							  <button type="button" class="btn btn-success btn-block" name="insert-data" id="insert-data" onclick="insertData()">Login Now</button>
+							  </div>
+                          </form>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+  function insertData() {
+    var username=$("#username").val();
+	 var password=$("#password").val();
+	
+	 
+    
+if((username == null || username == "") || (password == "" || password == null)) 
+ {
+ 
+$("#message").html("<strong>Username or Password </strong>  cannot be left empty. ");
+$("p").addClass("alert alert-warning");
+ 
+ }
+ else{
+//$("#message").html('Connecting... Please wait.');
+
+	//$("p").addClass("alert alert-success");
+// AJAX code to send data to php file.
+        $.ajax({
+            type: "POST",
+            url: "https://payall.ng/mobile_login.php",
+            data: {username:username,password:password},
+			async: false,
+            dataType: "JSON",
+	beforeSend: function() {
+                    //    $("#insert").val('Connecting..+');
+						  $("#message").html('Connecting... Please wait...');
+		 $("p").addClass("alert alert-warning");
+		 //$("#txtdint2").html('<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">');
+					
+					 //d.innerHTML = '<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">';
+                    },
+            success: function(data) {
+             
+			  var returnValue = JSON.stringify(data);
+					 var obj = JSON.parse(data);
+					 
+					  var resp = obj.resp;   
+					 /* $data = '{"resp":"'+resp+'", "username":"'+username+'", "password":"'+password+'", "usertype":"'+usertype+'", "wallet_number":"'+wallet_number+'", "merchantcode":"'+merchantcode+'"}';*/
+					  
+					  if(resp == "Success")
+					  {
+				 
+			   /*{"resp":"Success", "username":"08105297771", "password":"1111", "usertype":"3", "wallet_number":"0810529777139554", "merchantcode":"39554", "fullname":"TUNDE LAWAL", "phone":"08105297771"}*/
+			 
+					  // $("#message").html(data);
+		// $("p").addClass("alert alert-success");
+		 
+		 
+		 
+		 var username = obj.username;
+		 var password = obj.password;
+		 var usertype = obj.usertype;
+		 var wallet_number = obj.wallet_number;
+		 var merchantcode = obj.merchantcode;
+		 var fullname = obj.fullname;
+		 var phone = obj.phone;
+		 
+		 localStorage.setItem("username", username);
+		 localStorage.setItem("password", password);
+		 localStorage.setItem("usertype", usertype);
+		 localStorage.setItem("wallet_number", wallet_number);
+		 localStorage.setItem("merchantcode", merchantcode);
+		 localStorage.setItem("fullname", fullname);
+		 localStorage.setItem("phone", phone);
+		 
+				window.location.replace("dashboard.html");		  
+					  
+					  
+					
+					  }
+					  else
+					  {
+					  var mess = obj.Message;
+					   $("#message").html(mess);
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+					  
+					  }
+					  
+			
+			
+			
+			
+            },
+            error: function(err) {
+          
+			$("#message").html("<strong>Error Occured: </strong> "+err +".. Please try again later");
+$("p").addClass("alert alert-danger");
+            }
+        });
+}
+ 
+
+
+
+  
+}
+
+
+
+
+
+
+
+ 
+			 
+         
+
+  </script>
+      
+    <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+  
+</html>

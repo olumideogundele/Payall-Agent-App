@@ -1,0 +1,563 @@
+ 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+   <script type="text/javascript">
+    function clicked() {
+       if (confirm('Do you want to submit?')) {
+           pay();
+       } else {
+           return false;
+       }
+    }
+	</script>
+    
+      <script type="text/javascript" charset="utf-8">
+
+	
+	
+    // Wait for device API libraries to load
+    //
+	
+	 
+	
+ 
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+     
+ 
+       var networkState = checkConnection();
+   /* load local files if there is not network connection */
+                  if (networkState == Connection.NONE) {
+                      window.location="error.html";
+                  } else {
+             var run = function(){
+  var req = new XMLHttpRequest();
+  req.timeout = 500;
+  req.open('GET', 'index.html', true);
+  req.send();
+}
+
+setInterval(run, 3000);
+                  }
+    }
+
+        function checkConnection() {
+            var networkState = navigator.connection.type;
+
+            var states = {};
+            states[Connection.UNKNOWN]  = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI]     = 'WiFi connection';
+            states[Connection.CELL_2G]  = 'Cell 2G connection';
+            states[Connection.CELL_3G]  = 'Cell 3G connection';
+            states[Connection.CELL_4G]  = 'Cell 4G connection';
+            states[Connection.CELL]     = 'Cell generic connection';
+            states[Connection.NONE]     = 'No network connection';
+  return networkState;
+            //alert('Connection type: ' + states[networkState]);
+        }
+
+    </script>
+        <meta name="format-detection" content="telephone=no" />
+		 <meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,  target-densitydpi=device-dpi" />
+    <title>Pay IBEDC Bill</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  </head>
+	
+   <script type="text/javascript"> 
+
+ var name=localStorage.getItem("fullname");
+ 
+ if(name == "null")
+ {
+	 	window.location.replace("index.html");
+ }
+</script>
+
+ <script>
+  function call()
+  {
+$("#myDiv").hide();
+$("#printer").hide();
+$("#messsge").hide();
+
+}
+</script>
+  <body onLoad="call()">
+
+
+    <div id="login-overlay" class="modal-dialog">
+    
+      <div class="modal-content">
+          <div class="modal-header">
+          <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times; </a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="home.html">IBEDC</a>
+   <a href="history.html">History</a>
+  <a href="#">Reprint</a>
+   <a href="singout.html">Sign Out</a>
+</div>
+
+<span style="font-size:25px;cursor:pointer" onclick="openNav()"><img src="menu.fw.png" width="37" height="34" alt="Menu">
+
+<span style="font-size:15px;">
+ <script type="text/javascript"> 
+
+ var name=localStorage.getItem("fullname");
+ 
+  document.write("Welcome: "+name);
+</script>
+</span>
+
+ </span>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+     
+               
+          </div>
+    
+ <h4 class="modal-title" id="myModalLabel" style="text-align:center;">
+  <img src="Payall Web-02.png" widtd="102" height="53" alt="PayAllNG"  /> </h4>
+          <div class="modal-body" style="height:100%;">
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="well">
+   
+                          <form id="loginForm"  action="" novalidate>
+                                 <p id="message" style="width:100%; text-align:center;"></p>
+							  <div id= "mainDiv">
+							  <div class="form-group" >
+                                  <label for="meter" class="control-label">Enter Meter/Account Number</label>
+                                  <input type="text"  oninput="showMyLoading()" class="form-control numbersOnly" id="meter" name="meter" value="" required title="Please enter you Name" placeholder="">
+                                   <div style="width:100%; text-align:center;"><span class="help-block" style="color:#000;  font-size:15px; font-weight:200; text-decoration:blink;" id="verify"></span></div>
+                              </div> 
+ <button type="button" class="btn btn-success btn-block" name="insert-data" id="insert-data" onclick="insertData()">Verify Customer</button>
+							  </div>
+                               
+
+							   <div id= "myDiv">
+							 <div class="form-group">
+                                  <label for="meter" class="control-label">Amount</label>
+                                  <input type="text"  oninput="paymentMade()" class="form-control numbersOnly" id="amount" name="amount" value="" required title="Please enter you Name" placeholder="">
+                                 <div style="width:100%; text-align:center;"> <span class="help-block" style="color:#F00;  font-size:19px;" id="paymentmade"> </span> </div>
+                              </div>
+							  
+							 
+									
+							   <div class="form-group">
+                                  <label for="meter" class="control-label">Reciever Phone Number</label>
+                                 <input type="text"  class="form-control" id="phone" name="phone"  value= "" onBlur="showMyLoading2()" required>
+                                  <span class="help-block"></span>
+                              </div>
+ <button type="button" class="btn btn-success btn-block" name="insert-pay"   id="insert-pay" onclick="clicked()">Pay Now</button>
+							 
+							 <div class="btn btn-info btn-block" name="insert-pay">Please confirm Informtion Below:</div>
+									<span class="help-block"></span><br>
+							  							 <div class="form-group">
+                                  <label for="meter" class="control-label">Customer Name</label>
+                                  <input type="text" class="form-control" id="customername" name="customername" value="" readonly>
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							    <div class="form-group">
+                                  <label for="meter" class="control-label">Meter Number Type</label>
+                             <input type="text" class="form-control" id="metering" name="metering"  value="" required readonly>	
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							  
+							  							 <div class="form-group">
+                                  <label for="meter" class="control-label">Account Type</label>
+                                 <input type="text" class="form-control" id="accounttype" name="accounttype" value= "" readonly>
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							  
+							  							 <div class="form-group">
+                                  <label for="meter" class="control-label">Bussiness Hub</label>
+                                <input type="text" class="form-control" id="thirdparty" name="thirdparty"  value="" required readonly>	
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							  
+							   <div class="form-group">
+                                  <label for="meter" class="control-label">Payment Type</label>
+                                <input type="text" class="form-control" id="Payment_type2" name="Payment_type2"  value="Electricity bills" required readonly>	
+                                  <span class="help-block"></span>
+                              </div>
+							  
+							  
+							   <div class="form-group">
+							   
+							   
+							   
+                              
+							 
+						 	
+						 																
+			
+                               
+								
+ 	<input type="hidden" class="form-control" id="company" name="company"  value="" required>
+																	  
+ <input type="hidden" class="form-control" id="payment_type" name="payment_type"  value="" required>				  
+								  
+ <input type="hidden" class="form-control" id="myaccounttype" name="myaccounttype"  value="" required>			  
+                              </div>
+							  
+							  
+							  
+							  
+							  
+							  </div>
+
+                             
+                              <br>
+                            
+                                 <div id="txtdint2" style="width:100%; text-align:center;"> </div>
+                                 
+                                 
+                                 <div id="printer">
+                                  <button type="button" class="btn btn-success btn-block" name="insert-data" id="insert-data" onclick="link()">Select a printer</button>
+                                 </div>
+							 
+							
+                          </form>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+function link ()
+{
+window.location.replace("printer.html");	
+	
+}
+
+
+
+  function insertData() {
+    var meter=$("#meter").val();
+	
+	$("#message").html('Finding '+meter+'.. Connecting... Please wait.');
+	$("p").addClass("alert alert-success");
+	
+	
+	var wallet_number=localStorage.getItem("wallet_number");
+//alert (wallet_number + " :wallet_number");
+    
+   if(meter == null || meter == "" )
+ {
+ 
+ $("#message").html("<strong>Meter Number</strong>  cannot be left empty. ");
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+ 
+ }
+ else{
+$("#message").html('Connecting... Please wait.');
+// AJAX code to send data to php file.
+        $.ajax({
+            type: "POST",
+            url: "https://payall.ng/insert-data2.php",
+            data: {meter:meter,meter2:meter},
+			async: false,
+            dataType: "JSON",
+	beforeSend: function() {
+                    //    $("#insert").val('Connecting..+');
+						  $("#message").html('Connecting... Please wait.');
+			 
+			   hideMyLoading();
+			 
+            $("p").addClass("alert alert-warning");
+			
+			// var d = document.getElementById('txtdint2');
+					  $("#txtdint2").html('<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">');
+					
+					 //d.innerHTML = '<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">';
+                    },
+            success: function(data) {
+             hideMyLoading();
+			  var returnValue = JSON.stringify(data);
+					 var obj = JSON.parse(data);
+					 
+					  var resp = obj.resp;   
+				 
+					  
+					  if(resp == "Success")
+					  {
+				/*  $("p").addClass("alert alert-success");	  
+					  $("#message").html(resp);*/
+			 
+			 
+			 
+          
+					  // alert(resp);
+					  $("#myDiv").show();
+					  $("#mainDiv").hide();
+					  $("#customername").val(obj.customername);  
+					   $("#accounttype").val(obj.accounttype); 
+						$("#thirdparty").val(obj.thirdparty); 
+						$("#company").val(obj.company);
+					$("#payment_type").val(obj.payment_type); 
+					$("#metering").val(obj.meter); 
+					$("#myaccounttype").val(obj.myaccounttype); 
+				 
+					   $("#txtdint2").html('');
+					   $("#messsge").hide();
+					  }
+					  else
+					  {
+					  var mess = obj.Message;
+					   $("#message").html(mess);
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+					  
+					  }
+					  
+			
+			
+			
+			
+            },
+            error: function(err) {
+            alert(err);
+            }
+        });
+}
+}
+
+
+
+
+  function pay() {
+    var phone = $("#phone").val();
+ var customername = $("#customername").val();
+ var accounttype = $("#accounttype").val();
+ var thirdparty = $("#thirdparty").val();
+// var Payment_type = $("#Payment_type").val();
+ var company = $("#company").val();
+ var payment_type = $("#payment_type").val();
+ var myaccounttype = $("#myaccounttype").val(); 
+ var metering = $("#metering").val(); 
+    var amount = $("#amount").val();
+ 
+
+//alert (wallet_number + " :wallet_number");
+ 
+ if(amount == null || amount == "" && phone == null || phone == "")
+ {
+ 
+					   $("#message").html("<strong>Amount</strong> and <strong>Phone Number</strong> cannot be left empty. ");
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+ 
+ }
+ else
+ {
+ 
+///   data: {amount:amount,meter:metering,customername:customername,accounttype:accounttype,thirdparty:thirdparty,company:company,payment_type:payment_type,myaccounttype:myaccounttype,phone:phone},
+/*	 localStorage.setItem("username", username);
+		 localStorage.setItem("password", password);
+		 localStorage.setItem("usertype", usertype);
+		 localStorage.setItem("wallet_number", wallet_number);
+		 localStorage.setItem("merchantcode", merchantcode);
+		 localStorage.setItem("fullname", fullname);
+		 localStorage.setItem("phone", phone);*/
+
+var wallet_number=localStorage.getItem("wallet_number");
+var usertype=localStorage.getItem("usertype");
+var merchantcode=localStorage.getItem("merchantcode");
+var fullname=localStorage.getItem("fullname");
+var username=localStorage.getItem("username");
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "https://payall.ng/test.php",
+           data: {amount:amount,meter:metering,customername:customername,accounttype:accounttype,thirdparty:thirdparty,company:company,payment_type:payment_type,myaccounttype:myaccounttype,phone:phone,wallet_number:wallet_number,merchantcode:merchantcode,fullname:fullname,usertype:usertype,username:username},
+			async: false,
+            dataType: "JSON",
+			beforeSend: function() {
+                    //    $("#insert").val('Connecting..+');
+						  $("#message").html('Connecting... Please wait.');
+			 
+			 
+			 
+            $("p").addClass("alert alert-warning");
+			
+			// var d = document.getElementById('txtdint2');
+					  $("#txtdint2").html('<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">');
+					
+					 //d.innerHTML = '<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">';
+                    },
+            success: function(data) {
+           //  $("#message").html(data);
+           // $("p").addClass("alert alert-success");
+			
+			   $("#myDiv").hide();
+					 $("#mainDiv").hide();
+					 
+					  
+					//  $("#message").html(resp);
+			 
+			  var returnValue = JSON.stringify(data);
+					 var obj = JSON.parse(data);
+					 
+					  var resp = obj.resp;   
+			 
+           // $("p").addClass("alert alert-success");
+					 // alert(resp);
+					   $("#myDiv").hide();
+					 $("#mainDiv").hide();
+					   var res = obj.res;
+					  var meter = obj.meter;
+					    var phoning = obj.phone;
+						  var amount = obj.amount;
+						    var KWH = obj.KWH;
+							  var paymenttypename = obj.paymenttypename;
+							    var customername = obj.customername;
+								  var fetsreceipt = obj.fetsreceipt;
+								    var paymentlogid = obj.paymentlogid;
+									 var token = obj.token;
+									 var statusCSS = obj.statusCSS;
+									 var statusParam = obj.status;
+									 	 var datetime = obj.datetime;
+										  var accounttype = obj.accounttype;
+										 
+									 
+ var table = '<table class="responsive table" id = "example" style="border:thin;"  border="2" width = "100%"><tr>	<tr>													  <td style="text-align: left; vertical-align: middle;"><img src="Payall Web-02.png" widtd="102" height="53" alt="PayAllNG" longdesc="http://payall.ng/base" /></td>													  <td style="text-align: left; vertical-align: middle;"><img src="ibedc.png" widtd="102" height="53" alt="IBEDC" longdesc="#" /></td>									  </tr><tr><td colspan="2" style="text-align: center; vertical-align: middle;">Thank You for choosing PayAll.<br />Below are the information of you transaction.</td> </tr> <tr>														<th style="text-align: left; vertical-align: middle;">Account Number:</th>														<th style="text-align: left; vertical-align: middle;">'+meter+' </th></tr><tr><th style="text-align: left; vertical-align: middle;">Phone Number:</th><th style="text-align: left; vertical-align: middle;">'+phone+' </th></tr> <tr><th style="text-align: left; vertical-align: middle;"><strong>Amount:</strong></th><th style="text-align: left; vertical-align: middle;"><strong>N'+amount+'</strong></th> </tr>  <tr><th style="text-align: left; vertical-align: middle;"><strong>KWH:</strong></th><th style="text-align: left; vertical-align: middle;"><strong>'+KWH+'</strong></th> 	</tr>  <tr>	<th style="text-align: left; vertical-align: middle;">Payment Method:</th><th style="text-align: left; vertical-align: middle;" '+paymenttypename+' </th></tr> <tr><th style="text-align: left; vertical-align: middle;">Customer Name:</th><th style="text-align: left; vertical-align: middle;">'+customername+' </th></tr><tr>	<th style="text-align: left; vertical-align: middle;">Reciept Number:</th>	<th style="text-align: left; vertical-align: middle;"> '+fetsreceipt+'</th></tr><tr><th style="text-align: left; vertical-align: middle;">Payment ID:</th><th style="text-align: left; vertical-align: middle;">'+paymentlogid+'</th></tr><tr><th style="text-align: left; vertical-align: middle;">Status:</th><th style="text-align: left; vertical-align: middle;"><span class="'+statusCSS+'">'+resp+'</span></th></tr><tr><th style="text-align: left; vertical-align: middle;">Token:</th><th style="text-align: left; vertical-align: middle;">'+token+' </th></tr><tr><th style="text-align: left; vertical-align: middle;">Date:</th><th style="text-align: left; vertical-align: middle;">'+datetime+' </th></tr><tr><th colspan="2" style="text-align: center; vertical-align: middle;">THANK YOU FOR YOUR PATRONAGE.</th></tr></thead></table>'; 
+					
+				
+				  
+				  
+				  var printing = "\nThank You for choosing PayAll.\nTransaction information below\n\nCustomer Name: "+customername+"\nPhone Number:"+phone+"\nMeter Name: "+meter+"\nMeter Type: "+paymenttypename+"\nAmount paid: N"+amount+"\nReciept Number (fets): "+fetsreceipt+"\nPayAll Number:"+paymentlogid+"\nToken: "+token+"\nKWH: "+KWH+"\nDate: "+datetime+"\nAccount Type: "+accounttype+"\n THANK YOU FOR YOUR PATRONAGE.\n\n";
+				
+				
+				
+			/*	  var printing = "\nThank You for choosing PayAll.\nTransaction information below\n\nCustomer Name:OLUGBENGA OLUFEMI\nPhone Number:08032015821\nMeter Name:126131326901\nMeter Type: Electricity Bill\nAmount paid: N9,000:00\nReciept Number (fets): 917211521\nPayAll Number:2018091111281835\nToken: 0000\nKWH:0000\nDate:2018-09-11 11:28:18\nAccount Type: Post Paid\n THANK YOU FOR YOUR PATRONAGE.\n\n";
+				     localStorage.setItem("firstname", printing);*/
+				  
+			 
+					   $("#txtdint2").html(table); 
+					   $("#printer").show();
+					   $("#messsge").hide();
+					 
+			 
+            },
+            error: function(err) {
+            alert(err);
+            }
+        });
+		
+		 }
+
+}
+
+
+
+
+
+
+
+  
+
+  </script>
+	    <script>
+		
+		function showMyLoading()
+		{
+		 $("#verify").html('Please click on Verify Customer Button below');	 
+		  $("#txtdint2").html('<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">');	
+					 
+		 	
+			
+			verify
+		}
+		
+		
+		
+ 		function showMyLoading2()
+		{
+			 
+		  $("#message").html('<img src=\'demo_wait.gif\'  height="64" alt="Connecting.. Please wait...">');	
+			
+		}
+		
+		
+		function hideMyLoading()
+		{
+			
+		  $("#txtdint2").html('');	
+			
+		}
+			function paymentMade()
+		{
+			
+		  $("#paymentmade").html('PLEASE NOTE: Payment made cannot be reversed.');	
+			
+		}
+		
+		
+	 
+		
+		
+		 
+				jQuery('.numbersOnly').keyup(function () { 
+    this.value = this.value.replace(/[^0-9\.]/g,'');
+});	
+		
+            var editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
+                lineNumbers: true,
+                matchBrackets: true,
+                mode: "application/x-httpd-php",
+                indentUnit: 4,
+                indentWithTabs: true,
+                enterMode: "keep",
+                tabMode: "shift"                                                
+            });
+            editor.setSize('100%','420px');
+        </script>     
+  
+    <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+  
+</html>
