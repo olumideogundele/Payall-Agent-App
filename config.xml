@@ -17,7 +17,7 @@
     <platform name="android" />
     <platform name="winphone" />
 	
-    <name>::PayAll Agent App::</name>
+    <name>PayAll Agent App</name>
     <description>Giving you more for less...</description>
     <author href="http://www.payall.ng" email="info@payall.ng">Tinuten Nigeria</author>
     <content src="index.html" />
